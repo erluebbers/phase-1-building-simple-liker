@@ -8,12 +8,14 @@ document.querySelectorAll('span.like-glyph').forEach(item => {
   item.addEventListener('click', function (e) {
     mimicServerCall()
     .then(function () {
-      e.target.innerText = FULL_HEART
-      e.target.className = "activated-heart"
-      // e.target.addEventListener('click', function () {
-      //   e.target.innerText = EMPTY_HEART
-      //   e.target.classList.remove("activated-heart")
-      // })
+      if (e.target.innerText === EMPTY_HEART) {      
+        e.target.innerText = FULL_HEART
+        e.target.className = "activated-heart"
+      } 
+      else {
+        e.target.innerText = EMPTY_HEART
+        e.target.classList.remove("activated-heart")
+      }
     })
     .catch(function () {
       document.querySelector("#modal").classList.remove("hidden")
@@ -21,17 +23,6 @@ document.querySelectorAll('span.like-glyph').forEach(item => {
     })
   })
 })
-
-
-document.querySelectorAll('span.like-glyph').forEach(item => {
-  item.addEventListener('click', function (e) {
-    if (e.target.innerText === FULL_HEART) {
-      e.target.innerText = EMPTY_HEART
-      e.target.classList.remove("activated-heart")
-    }
-  })
-})
-
 
 
 
